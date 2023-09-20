@@ -12,6 +12,12 @@
       </button>
     </div>
   </div>
+
+  <select name="hiddenSelect" v-show="false" :value="modelValue" @change="$emit('update:modelValue', $event.target.value)">
+    <option v-for="option in options" :key="option.value" :value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
 </template>
 
 <script>
