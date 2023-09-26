@@ -6,7 +6,7 @@
     </button>
 
     <div v-show="isOpened" class="dropdown__menu" role="listbox">
-      <button v-for="option in options" :key="option.value" :class="['dropdown__item', {'dropdown__item_icon': iconDropDown}]" @click="getOption(option)" role="option" type="button">
+      <button v-for="option in options" :key="option.value" :class="['dropdown__item', {'dropdown__item_icon': iconDropDown}]" @click="setOption(option)" role="option" type="button">
         <UiIcon v-if="option.icon" :icon="option.icon" class="dropdown__icon" />
           {{ option.text }}
       </button>
@@ -55,13 +55,7 @@ export default {
 
   computed: {
     iconDropDown() {
-      let hasIcon = false;
-      this.options.forEach((option) => {
-        if (option.icon) {
-          hasIcon = true;
-        }
-      });
-      return hasIcon;
+      return this.options.some((option) => option.icon);
     },
 
     selectedOption() {
@@ -78,7 +72,7 @@ export default {
   },
 
   methods: {
-    getOption(option) {
+    setOption(option) {
       this.isOpened = false;
       this.$emit('update:modelValue', option.value);
     },

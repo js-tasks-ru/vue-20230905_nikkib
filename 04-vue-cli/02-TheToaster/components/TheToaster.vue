@@ -25,28 +25,24 @@ export default {
   methods: {
     success(message) {
       this.toasts.push({type: "success", message});
-      const toastsCopy = [...this.toasts];
-      this.toasts = toastsCopy;
+
+      setTimeout(() => {
+        this.toasts.shift();
+      }, 5000);
     },
 
     error(message) {
       this.toasts.push({type: "error", message});
-      const toastsCopy = [...this.toasts];
-      this.toasts = toastsCopy;
+
+      setTimeout(() => {
+        this.toasts.shift();
+      }, 5000);
     },
 
     close(index) {
       this.toasts.splice(index, 1);
     },
-  },
-
-  watch: {
-    toasts() {
-      setTimeout(() => {
-        this.toasts.shift();
-      }, 5000);
-    },
-  },
+  }
 };
 </script>
 
