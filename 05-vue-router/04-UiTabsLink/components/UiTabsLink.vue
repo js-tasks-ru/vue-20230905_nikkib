@@ -1,5 +1,7 @@
 <template>
-  <a class="tabs__tab tabs__tab_active" role="tab">Tab</a>
+  <RouterLink :to="to" class="tabs__tab" role="tab" exactActiveClass="tabs__tab_active">
+    <slot />
+  </RouterLink>
 </template>
 
 <script>
